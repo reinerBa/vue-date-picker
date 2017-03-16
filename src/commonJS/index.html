@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue-date-picker</title>
+	<link href="vue-date-picker.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>-->
+  </head>
+  <body>
+    <div id="app">
+	<template>
+		<datepicker :readonly="true" format="YYYY-MM-DD"></datepicker>
+		<datepicker format="YYYY-M-D" value="2015-9-5"></datepicker>
+		<datepicker :readonly="true" format="MMM/D/YYYY" width="300px"></datepicker>
+		<datepicker :readonly="true" format="MMM/D/YYYY" width="300px" name="date"></datepicker>
+	</template>
+	</div>
+    <script src="vue-date-picker.js"></script>
+	<script>
+	new Vue({
+		el:'#app',
+		components: { 
+			datepicker: vue_date_picker 
+		}
+	});</script>
+  </body>
+</html>
