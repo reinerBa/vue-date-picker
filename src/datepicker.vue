@@ -112,7 +112,7 @@
     <div class="datetime-picker" :style="{ width: width }">
         <input
             type="text"
-            name="{{name}}"
+            :name="name"
             :style="styleObj"
             :readonly="readonly"
             :value="value"
@@ -198,7 +198,7 @@
                 time.setMonth(time.getMonth() + 2, 0);       // the last day of this month
                 var curDayCount = time.getDate();
                 time.setDate(1);                             // fix bug when month change
-                var value = this.value || this.stringify(new Date());
+                var value = this.value2 || this.stringify(new Date());
                 for (let i = 0; i < curDayCount; i++) {
                     let tmpTime = new Date(time.getFullYear(), time.getMonth(), i + 1);
                     let status = '';
@@ -230,9 +230,11 @@
                 this.now = new Date(this.now);
             },
             pickDate (index) {
+				if(index >= this.date[index].length) 
+					return;
                 this.show = false;
                 this.now = new Date(this.date[index].time);
-                this.value = this.stringify();
+                this.value2 = this.stringify();
             },
             parse (str) {
                 var time = new Date(str);
@@ -262,10 +264,13 @@
                 }
             }
         },
-        ready () {
-            this.now = this.parse(this.value) || new Date();
-            document.addEventListener('click', this.leave, false);
-        },
+        mounted: () {
+			this.value2 = this.value;
+			this.$next(()=>{
+				this.now = this.parse(this.value2) || new Date();
+				document.addEventListener('click', this.leave, false);
+			});
+		},
         beforeDestroy () {
             document.removeEventListener('click', this.leave, false);
         }
