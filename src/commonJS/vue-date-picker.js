@@ -113,12 +113,14 @@
                 }
             }
         },
-        mount:function () {
-			this.value2=value;
+        mounted:function () {
+			this.$nextTick(function(){
+			this.value2=this.value;
 			this.$nextTick(function(){
 				this.now = this.parse(this.value2) || new Date();
 				document.addEventListener('click', this.leave, false);
 			});
+		})
 		},
         beforeDestroy:function () {
             document.removeEventListener('click', this.leave, false);
