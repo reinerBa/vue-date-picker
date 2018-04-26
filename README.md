@@ -8,7 +8,7 @@
 
 # Requirements
 
-- [Vue.js](https://github.com/yyx990803/vue) `^1.0.0`
+- [Vue.js](https://github.com/yyx990803/vue) `^2.0.0`
 
 # Instllation
 
